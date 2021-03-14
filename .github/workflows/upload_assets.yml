@@ -17,5 +17,9 @@ jobs:
             gh api $url >> archive.zip
             unzip archive.zip
           done
+
+          for i in *.tar.gz; do
+            gh release upload ${{ github.event.inputs.tag }} $i || true
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
