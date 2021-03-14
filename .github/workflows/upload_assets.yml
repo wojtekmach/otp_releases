@@ -9,4 +9,4 @@ jobs:
   upload:
     runs-on: ubuntu-16.04
     steps:
-      - run: echo ${{ github.event.inputs.version }}
+      - run: echo ${{ github.event.inputs.workflow_url }}
