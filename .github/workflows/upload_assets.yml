@@ -18,8 +18,14 @@ jobs:
             unzip archive.zip
           done
 
+          assets=$(gh api repos/wojtekmach/otp_releases/releases/$(gh api repos/wojtekmach/otp_releases/releases/tags/${{ github.event.inputs.tag }} | jq .id)/assets | jq -r '.[].name')
+
           for i in *.tar.gz; do
-            gh release upload ${{ github.event.inputs.tag }} $i || true
+            if echo assets | grep $i; then
+              echo $i already uploaded
+            else
+              gh release upload ${{ github.event.inputs.tag }} $i
+            fi
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
