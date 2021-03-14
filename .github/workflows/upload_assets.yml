@@ -12,6 +12,6 @@ jobs:
   upload:
     runs-on: ubuntu-16.04
     steps:
-      - run: gh api ${{ github.event.inputs.workflow_url }}
+      - run: gh api ${{ github.event.inputs.workflow_url }}/artifacts | jq -r '.artifacts[].archive_download_url'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
