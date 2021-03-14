@@ -13,3 +13,5 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - run: gh api ${{ github.event.inputs.workflow_url }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
