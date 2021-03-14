@@ -2,6 +2,9 @@ name: Upload release assets
 on:
   workflow_dispatch:
     inputs:
+      tag:
+        description: 'The git tag'
+        required: true
       workflow_url:
         description: 'The workflow URL'
         required: true
@@ -9,4 +12,4 @@ jobs:
   upload:
     runs-on: ubuntu-16.04
     steps:
-      - run: echo ${{ github.event.inputs.workflow_url }}
+      - run: gh api ${{ github.event.inputs.workflow_url }}
