@@ -24,7 +24,7 @@ jobs:
             if echo assets | grep $i; then
               echo $i already uploaded
             else
-              gh release upload ${{ github.event.inputs.tag }} $i
+              gh release -R wojtekmach/otp_releases upload ${{ github.event.inputs.tag }} $i
             fi
           done
         env:
