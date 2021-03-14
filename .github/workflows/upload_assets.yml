@@ -1,0 +1,12 @@
+name: Upload release assets
+on:
+  workflow_dispatch:
+    inputs:
+      workflow_url:
+        description: 'The workflow URL'
+        required: true
+jobs:
+  ensure_release:
+    runs-on: ubuntu-16.04
+    steps:
+      - run: echo ${{ github.event.inputs.version }}
